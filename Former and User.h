@@ -168,8 +168,9 @@ public:
 private:
 	std::ifstream fin;
 	std::ifstream db_if;
+	std::vector <std::string> file_names;
 	int count = 0;
-
+	
 	void choose_file(std::string& sub);
 	void print_quizes();
 	void end_of_test();
@@ -232,13 +233,13 @@ void User::choose_file(std::string& sub) {
 		{
 			std::getline(db_if, tmp);
 			std::cout << "( " + tmp + " ),  ";
+			file_names.push_back(tmp);
 			std::getline(db_if, tmp);
 		}
 		std::cout << "Input the file number in brakets: ";
-		std::string file_num;
+		int file_num;
 		std::cin >> file_num;
-
-		fin.open("Test for " + sub + '(' + file_num + ").txt");
+		fin.open(file_names[file_num-1]);
 	}
 	else {
 		std::cout << "Something go wrong please alert about it to our adminitration :" << std::endl;
